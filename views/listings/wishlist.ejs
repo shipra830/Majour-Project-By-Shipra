@@ -1,0 +1,12 @@
+<h1>My Wishlist</h1>
+
+<% wishlist.forEach(listing => { %>
+  <div>
+    <h3><%= listing.title %></h3>
+    <img src="<%= listing.image.url %>" width="200" />
+
+    <form action="/listings/<%= listing._id %>/unwishlist" method="POST">
+      <button>Remove</button>
+    </form>
+  </div>
+<% }) %>

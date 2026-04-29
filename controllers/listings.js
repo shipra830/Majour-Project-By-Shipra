@@ -1,9 +1,18 @@
 const fetch = require("node-fetch"); //add this in controller listing.js
 const Listing = require("../models/listing");
+const User = require("../models/user");
 
 module.exports.index = async (req, res) => {
   const allListings = await Listing.find({});
-  res.render("listings/index.ejs", { allListings });
+
+  let wishlist = [];
+
+  if (req.user) {
+    const user = await User.findById(req.user._id);
+    wishlist = user.wishlist;
+  }
+
+  res.render("listings/index.ejs", { allListings, wishlist });
 };
 
 module.exports.renderNewForm = (req, res) => {

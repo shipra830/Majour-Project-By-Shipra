@@ -21,13 +21,36 @@
      <div class="card-body">
   <p class="card-text">
     <p class="card-text">Owned by <i><%= listing.owner.username %></i></p>
-  </p>
+  
 
   <p class="card-text"><%= listing.description %></p>
 
   <p class="card-text">
     &#8377; <%= listing.price.toLocaleString("en-IN") %>
   </p>
+
+ 
+
+<!-- ================= BOOKING FORM START ================= -->
+
+<h5 class="mt-3">Book this stay</h5>
+
+<form action="/listings/<%= listing._id %>/book" method="POST">
+  <div class="mb-2">
+    <label>Check-in:</label>
+    <input type="date" name="checkIn" class="form-control" required />
+  </div>
+
+  <div class="mb-2">
+    <label>Check-out:</label>
+    <input type="date" name="checkOut" class="form-control" required />
+  </div>
+
+  <button class="btn btn-success mt-2 w-100">Book Now</button>
+</form>
+
+<!-- ================= BOOKING FORM END ================= -->
+
 
   <p class="card-text"><%= listing.location %></p>
   <p class="card-text"><%= listing.country %></p>
